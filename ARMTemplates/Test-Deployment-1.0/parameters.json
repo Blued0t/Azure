@@ -1,0 +1,48 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "NIC_Identity": {
+            "value": "InternalNetwork"
+        },
+        "location": {
+            "value": "uksouth"
+        },
+        "resourceGroupID": {
+            "value": "ARMTemplateDeployment"
+        },
+        "PubIP_sku": {
+            "value": "Basic"
+        },
+        "PubIP_name": {
+            "value": "ARM_PubIP"
+        },
+        "PubIP_publicIPAllocationMethod": {
+            "value": "Dynamic"
+        },
+        "PubIP_idleTimeoutInMinutes": {
+            "value": 4
+        },
+        "PubIP_publicIpAddressVersion": {
+            "value": "IPv4"
+        },
+        "PubIP_domainNameLabel": {
+            "value": "bluedot-arm"
+        },  
+        "NIC_addressPrefix": {
+            "value": "10.1.0.0/24"
+        },
+        "NIC_subnetName": {
+            "value": "default"
+        },
+        "NIC_subnetAddressPrefix": {
+            "value": "10.1.0.0/24"
+        },
+        "NIC_enableDdosProtection": {
+            "value": false
+        },
+        "NSG_Name": {
+            "value": "ARM_NSG"
+        }
+    }
+}
