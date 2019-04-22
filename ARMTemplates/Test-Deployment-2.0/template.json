@@ -93,11 +93,11 @@
                         }
                     }
                 ],
-                "enableDdosProtection": "[parameters('NIC_enableDdosProtection')]",
+                "enableDdosProtection": "[parameters('NIC_enableDdosProtection')]"
             }
         },
         {
-            "apiVersion": "2018-11-01",
+            "apiVersion": "2019-02-01",
             "type": "Microsoft.Network/networkSecurityGroups",
             "name": "[parameters('NSG_Name')]",
             "location": "[parameters('location')]",
