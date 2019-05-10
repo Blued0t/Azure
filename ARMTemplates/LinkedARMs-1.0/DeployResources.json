@@ -1,0 +1,54 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "artifactsLocation": {
+            "type": "string",
+            "metadata": {
+                "description": "URL to location of linked templates"
+            }
+        },
+        "artifactsLocationSasToken": {
+            "type": "securestring",
+            "metadata": {
+                "description": "SAS Token to access linked templates"
+            }
+        }
+    },
+    "variables": {
+        "location"              : "uksouth",
+        "PublicIPName"          : "PubIP_1",
+        "PublicIPSKU"           : "Basic",
+        "PublicIPAllocation"    : "Dynamic",
+        "PublicIPidleTimeout"   : "15",
+        "PublicIPdomainLabel"   : "bluedot-arm",
+        "PublicIpAddressVersion": "IPv4"
+    },
+    "resources": [
+        {
+            "name": "CreatePublicIP",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2015-01-01",
+            "tags": {
+                "displayName": "CreatePublicIP"
+            },
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('artifactsLocation'), '/linkedTemplates/pubIpAddress.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location"                      : "[variables('location')]",
+                    "PubIP_name"                    : "[variables('PublicIPName')]",
+                    "PubIP_sku"                     : "[variables('PublicIPSKU')]",
+                    "PubIP_publicIPAllocationMethod": "[variables('PublicIPAllocation')]",
+                    "PubIP_idleTimeoutInMinutes"    : "[variables('PublicIPidleTimeout')]",
+                    "PubIP_domainNameLabel"         : "[variables('PublicIPdomainLabel')]",
+                    "PubIP_publicIpAddressVersion"  : "[variables('PublicIpAddressVersion')]",
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}

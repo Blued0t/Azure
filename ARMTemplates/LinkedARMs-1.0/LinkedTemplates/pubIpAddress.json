@@ -1,0 +1,57 @@
+
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string"
+        },
+        "PubIP_name": {
+            "type": "string"
+        },
+        "PubIP_sku": {
+            "type": "string",
+            "allowedValues": [
+                "Basic",
+                "Standard"
+            ]
+        },
+        "PubIP_publicIPAllocationMethod": {
+            "type": "string",
+            "allowedValues": [
+                "Dynamic",
+                "Static"
+            ]
+        },
+        "PubIP_idleTimeoutInMinutes": {
+            "type": "int"
+        },
+        "PubIP_domainNameLabel": {
+            "type": "string"
+        },
+        "PubIP_publicIpAddressVersion": {
+            "type": "string"
+        }
+    },    
+    
+    "resources": [
+        {
+            "apiVersion": "2018-08-01",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "name": "[parameters('PubIP_name')]",
+            "location": "[parameters('location')]",
+            "sku": {
+                "name": "[parameters('PubIP_sku')]"
+            },
+            "properties": {
+                "publicIPAllocationMethod": "[parameters('PubIP_publicIPAllocationMethod')]",
+                "idleTimeoutInMinutes": "[parameters('PubIP_idleTimeoutInMinutes')]",
+                "publicIpAddressVersion": "[parameters('PubIP_publicIpAddressVersion')]",
+                "dnsSettings": {
+                    "domainNameLabel": "[parameters('PubIP_domainNameLabel')]"
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}
