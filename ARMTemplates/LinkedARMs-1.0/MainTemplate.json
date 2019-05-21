@@ -1,6 +1,9 @@
 {
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+
     "variables": {
-        "templatelink": "https://github.com/Blued0t/Azure/blob/master/ARMTemplates/LinkedARMs-1.0/LinkedTemplates/pubIpAddress.json",
+        "templatelink": "https://raw.githubusercontent.com/Blued0t/Azure/master/ARMTemplates/LinkedARMs-1.0/LinkedTemplates/pubIpAddress.json",
         "location"              : "uksouth",
         "PublicIPName"          : "PubIP_1",
         "PublicIPSKU"           : "Basic",
@@ -21,13 +24,13 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "location"                      : "[variables('location')]",
-                    "PubIP_name"                    : "[variables('PublicIPName')]",
-                    "PubIP_sku"                     : "[variables('PublicIPSKU')]",
-                    "PubIP_publicIPAllocationMethod": "[variables('PublicIPAllocation')]",
-                    "PubIP_idleTimeoutInMinutes"    : "[variables('PublicIPidleTimeout')]",
-                    "PubIP_domainNameLabel"         : "[variables('PublicIPdomainLabel')]",
-                    "PubIP_publicIpAddressVersion"  : "[variables('PublicIpAddressVersion')]"
+                    "location"                      :{"value":"[variables('location')]"},
+                    "PubIP_name"                    :{"value":"[variables('PublicIPName')]"},
+                    "PubIP_sku"                     :{"value":"[variables('PublicIPSKU')]"},
+                    "PubIP_publicIPAllocationMethod":{"value":"[variables('PublicIPAllocation')]"},
+                    "PubIP_idleTimeoutInMinutes"    :{"value":"[variables('PublicIPidleTimeout')]"},
+                    "PubIP_domainNameLabel"         :{"value":"[variables('PublicIPdomainLabel')]"},
+                    "PubIP_publicIpAddressVersion"  :{"value":"[variables('PublicIpAddressVersion')]"}
                 }
             }
         }
