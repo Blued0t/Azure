@@ -1,16 +1,6 @@
 {
-    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "artifactsLocation": {
-            "type": "string",
-            "metadata": {
-                "description": "https://github.com/Blued0t/Azure/tree/master/ARMTemplates/LinkedARMs-1.0"
-            }
-        }
-
-    },
     "variables": {
+        "templatelink": "https://github.com/Blued0t/Azure/blob/master/ARMTemplates/LinkedARMs-1.0/LinkedTemplates/pubIpAddress.json",
         "location"              : "uksouth",
         "PublicIPName"          : "PubIP_1",
         "PublicIPSKU"           : "Basic",
@@ -21,16 +11,13 @@
     },
     "resources": [
         {
-            "name": "CreatePublicIP",
+            "apiVersion": "2015-01-01",
+            "name": "nestedTemplate",
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2016-09-01",
-            "tags": {
-                "displayName": "CreatePublicIP"
-            },
             "properties": {
-                "mode": "Incremental",
+                "mode": "incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('artifactsLocation'), '/linkedTemplates/pubIpAddress.json')]",
+                    "uri": "[variables('templatelink')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -44,6 +31,5 @@
                 }
             }
         }
-    ],
-    "outputs": {}
+    ]
 }
