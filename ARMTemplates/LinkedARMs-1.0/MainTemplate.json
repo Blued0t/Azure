@@ -26,10 +26,6 @@
             "apiVersion": "2016-09-01",
             "name": "[concat('Public-IP-Address', copyIndex())]",
             "type": "Microsoft.Resources/deployments",
-            "copy":{
-                "name"  : "storagecopy",
-                "count" : 2
-              },
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
@@ -38,7 +34,7 @@
                 },
                 "parameters": {
                     "location"                      :{"value":"[variables('location')]"},
-                    "PubIP_name"                    :"[concat(variables('PublicIPName'), copyIndex())]",
+                    "PubIP_name"                    :{"value":"[variables('PublicIPName')]"},
                     "PubIP_sku"                     :{"value":"[variables('PublicIPSKU')]"},
                     "PubIP_publicIPAllocationMethod":{"value":"[variables('PublicIPAllocation')]"},
                     "PubIP_idleTimeoutInMinutes"    :{"value":"[variables('PublicIPidleTimeout')]"},
