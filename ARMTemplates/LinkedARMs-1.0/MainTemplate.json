@@ -25,7 +25,7 @@
             "name": "Public IP Address",
             "type": "Microsoft.Resources/deployments",
             "properties": {
-                "mode": "incremental",
+                "mode": "Incremental",
                 "templateLink": {
                     "uri": "[variables('templatePubIp')]",
                     "contentVersion": "1.0.0.0"
@@ -46,7 +46,7 @@
             "name": "Network Interface",
             "type": "Microsoft.Resources/deployments",
             "properties": {
-                "mode": "incremental",
+                "mode": "Incremental",
                 "templateLink": {
                     "uri": "[variables('templateNetworkInt')]",
                     "contentVersion": "1.0.0.0"
@@ -57,7 +57,7 @@
                     "NIC_addressPrefix"         :{"value":"[variables('NIC_addressPrefix')]"},
                     "NIC_subnetName"            :{"value":"[variables('NIC_subnetName')]"},
                     "NIC_subnetAddressPrefix"   :{"value":"[variables('NIC_subnetAddressPrefix')]"},
-                    "NIC_enableDdosProtection"  :{"value":"[variables('NIC_enableDdosProtection')]"},
+                    "NIC_enableDdosProtection"  :{"value":"[variables('NIC_enableDdosProtection')]"}
                 }
             }
         }        

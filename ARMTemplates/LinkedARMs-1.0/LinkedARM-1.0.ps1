@@ -24,25 +24,20 @@
     Optional, path to the parameters file. Defaults to parameters.json. If file is not found, will prompt for parameter values based on template.
 #>
 
+[CmdletBinding()]
 param(
- [Parameter(Mandatory=$True)]
- [string]
- $subscriptionId,
+ [Parameter(Mandatory=$false)]
+ [string]$subscriptionId = "4453e6df-6c31-4f35-b249-0316c780cba4",
 
  [Parameter(Mandatory=$True)]
- [string]
- $resourceGroupName,
+ [string]$resourceGroupName,
 
- [string]
- $resourceGroupLocation,
+ [string]$resourceGroupLocation = "uksouth",
 
  [Parameter(Mandatory=$True)]
- [string]
- $deploymentName,
+ [string]$deploymentName,
 
- [string]
- $templateFilePath = "MainTemplate.json",
-
+ [string]$templateFilePath = ".\MainTemplate.json"
 )
 
 <#
@@ -98,8 +93,8 @@ else{
 
 # Start the deployment
 Write-Host "Starting deployment...";
-if(Test-Path $parametersFilePath) {
-    New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $deploymentName -TemplateFile $templateFilePath -TemplateParameterFile $parametersFilePath;
-} else {
+if(Test-Path $templateFilePath) {
+#    New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $deploymentName -TemplateFile $templateFilePath -TemplateParameterFile $parametersFilePath;
+#} else {
     New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $deploymentName -TemplateFile $templateFilePath;
 }
