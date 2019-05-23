@@ -41,10 +41,8 @@ param(
  $deploymentName,
 
  [string]
- $templateFilePath = "template.json",
+ $templateFilePath = "MainTemplate.json",
 
- [string]
- $parametersFilePath = "parameters.json"
 )
 
 <#

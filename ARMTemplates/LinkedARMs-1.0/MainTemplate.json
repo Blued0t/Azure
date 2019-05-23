@@ -3,24 +3,31 @@
     "contentVersion": "1.0.0.0",
 
     "variables": {
-        "templatelink": "https://raw.githubusercontent.com/Blued0t/Azure/master/ARMTemplates/LinkedARMs-1.0/LinkedTemplates/pubIpAddress.json",
-        "location"              : "uksouth",
-        "PublicIPName"          : "PubIP_1",
-        "PublicIPSKU"           : "Basic",
-        "PublicIPAllocation"    : "Dynamic",
-        "PublicIPidleTimeout"   : "15",
-        "PublicIPdomainLabel"   : "bluedot-arm",
-        "PublicIpAddressVersion": "IPv4"
+        "templatePubIp"             : "https://raw.githubusercontent.com/Blued0t/Azure/master/ARMTemplates/LinkedARMs-1.0/LinkedTemplates/pubIpAddress.json",        
+        "location"                  : "uksouth",
+        "PublicIPName"              : "PubIP_1",
+        "PublicIPSKU"               : "Basic",
+        "PublicIPAllocation"        : "Dynamic",
+        "PublicIPidleTimeout"       : 15,
+        "PublicIPdomainLabel"       : "bluedot-arm",
+        "PublicIpAddressVersion"    : "IPv4",
+        "templateNetworkInt"        : "https://raw.githubusercontent.com/Blued0t/Azure/master/ARMTemplates/LinkedARMs-1.0/LinkedTemplates/networkInterface.json",
+        "NIC_identity"              : "InternalNetwork",
+        "NIC_addressPrefix"         : "10.1.0.0/24",
+        "NIC_subnetName"            : "default",
+        "NIC_subnetAddressPrefix"   : "10.1.0.0/24",
+        "NIC_enableDdosProtection"  : false
+
     },
     "resources": [
         {
             "apiVersion": "2015-01-01",
-            "name": "nestedTemplate",
+            "name": "Public IP Address",
             "type": "Microsoft.Resources/deployments",
             "properties": {
                 "mode": "incremental",
                 "templateLink": {
-                    "uri": "[variables('templatelink')]",
+                    "uri": "[variables('templatePubIp')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -33,6 +40,26 @@
                     "PubIP_publicIpAddressVersion"  :{"value":"[variables('PublicIpAddressVersion')]"}
                 }
             }
-        }
+        },
+        {
+            "apiVersion": "2015-01-01",
+            "name": "Network Interface",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "[variables('templateNetworkInt')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location"                  :{"value":"[variables('location')]"},
+                    "NIC_Identity"              :{"value":"[variables('NIC_Identity')]"},
+                    "NIC_addressPrefix"         :{"value":"[variables('NIC_addressPrefix')]"},
+                    "NIC_subnetName"            :{"value":"[variables('NIC_subnetName')]"},
+                    "NIC_subnetAddressPrefix"   :{"value":"[variables('NIC_subnetAddressPrefix')]"},
+                    "NIC_enableDdosProtection"  :{"value":"[variables('NIC_enableDdosProtection')]"},
+                }
+            }
+        }        
     ]
 }
