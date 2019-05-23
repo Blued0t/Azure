@@ -25,7 +25,7 @@
     
     "resources": [
         {
-            "comments": "Network Interface",
+            "comments": "NetworkInterface",
             "apiVersion": "2018-08-01",
             "name": "[parameters('NIC_Identity')]",
             "type": "Microsoft.Network/virtualNetworks",
