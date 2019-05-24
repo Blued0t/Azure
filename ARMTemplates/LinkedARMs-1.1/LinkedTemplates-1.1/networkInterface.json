@@ -1,0 +1,52 @@
+
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string"
+        },
+        "NIC_Identity": {
+            "type": "string"
+        },
+        "NIC_addressPrefix": {
+            "type": "string"
+        },
+        "NIC_subnetName": {
+            "type": "string"
+        },
+        "NIC_subnetAddressPrefix": {
+            "type": "string"
+        },
+        "NIC_enableDdosProtection": {
+            "type": "bool"
+        }
+    },    
+    
+    "resources": [
+        {
+            "comments": "NetworkInterface",
+            "apiVersion": "2018-08-01",
+            "name": "[parameters('NIC_Identity')]",
+            "type": "Microsoft.Network/virtualNetworks",
+            "location": "[parameters('location')]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[parameters('NIC_addressPrefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[parameters('NIC_subnetName')]",
+                        "properties": {
+                            "addressPrefix": "[parameters('NIC_subnetAddressPrefix')]"
+                        }
+                    }
+                ],
+                "enableDdosProtection": "[parameters('NIC_enableDdosProtection')]"
+            }
+        }        
+    ],
+    "outputs": {}
+}
