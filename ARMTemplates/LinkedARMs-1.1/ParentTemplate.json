@@ -3,9 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "artifactsLocation": {
-            "type": "string",
+            "type"          : "string",
+            "defaultValue"  : "https://raw.githubusercontent.com/Blued0t/Azure/master/ARMTemplates/LinkedARMs-1.1",
             "metadata": {
-                "description": "https://raw.githubusercontent.com/Blued0t/Azure/master/ARMTemplates/LinkedARMs-1.1"
+                "description": "Linked template locations"
             }
         }
 

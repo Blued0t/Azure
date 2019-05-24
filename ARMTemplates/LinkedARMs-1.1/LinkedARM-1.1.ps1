@@ -37,7 +37,7 @@ param(
  [Parameter(Mandatory=$True)]
  [string]$deploymentName,
 
- [string]$templateFilePath = ".\MainTemplate.json"
+ [string]$templateFilePath = ".\ParentTemplate.json"
 )
 
 <#
