@@ -35,13 +35,13 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "location"                      : "[variables('location')]",
-                    "PubIP_name"                    : "[variables('PublicIPName')]",
-                    "PubIP_sku"                     : "[variables('PublicIPSKU')]",
-                    "PubIP_publicIPAllocationMethod": "[variables('PublicIPAllocation')]",
-                    "PubIP_idleTimeoutInMinutes"    : "[variables('PublicIPidleTimeout')]",
-                    "PubIP_domainNameLabel"         : "[variables('PublicIPdomainLabel')]",
-                    "PubIP_publicIpAddressVersion"  : "[variables('PublicIpAddressVersion')]"
+                    "location"                      :{"value":"[variables('location')]"},
+                    "PubIP_name"                    :{"value":"[variables('PublicIPName')]"},
+                    "PubIP_sku"                     :{"value":"[variables('PublicIPSKU')]"},
+                    "PubIP_publicIPAllocationMethod":{"value":"[variables('PublicIPAllocation')]"},
+                    "PubIP_idleTimeoutInMinutes"    :{"value":"[variables('PublicIPidleTimeout')]"},
+                    "PubIP_domainNameLabel"         :{"value":"[variables('PublicIPdomainLabel')]"},
+                    "PubIP_publicIpAddressVersion"  :{"value":"[variables('PublicIpAddressVersion')]"}
                 }
             }
         }
