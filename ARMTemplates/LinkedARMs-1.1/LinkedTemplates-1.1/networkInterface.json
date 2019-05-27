@@ -4,23 +4,42 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-            "type": "string"
-        },
-        "NIC_Identity": {
-            "type": "string"
-        },
-        "NIC_addressPrefix": {
-            "type": "string"
-        },
-        "NIC_subnetName": {
-            "type": "string"
-        },
-        "NIC_subnetAddressPrefix": {
-            "type": "string"
-        },
-        "NIC_enableDdosProtection": {
-            "type": "bool"
-        }
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+              "description": "Location for all resources."
+            }
+          },
+          "NIC_Identity": {
+            "type": "string",
+            "metadata": {
+              "description": "NIC Name"
+            }
+          }, 
+          "NIC_addressPrefix": {
+            "type": "string",
+            "metadata": {
+              "description": "NIC Address Prefix"
+            }
+          },  
+          "NIC_subnetName": {
+            "type": "string",
+            "metadata": {
+              "description": "NIC subnetname"
+            }
+          },  
+          "NIC_subnetAddressPrefix": {
+            "type": "string",
+            "metadata": {
+              "description": "NIC Subnet prefix"
+            }
+          }, 
+          "NIC_enableDdosProtection": {
+            "type": "bool",
+            "metadata": {
+              "description": "NIC enableDdos protections"
+            }
+          }
     },    
     
     "resources": [
@@ -31,20 +50,17 @@
             "type": "Microsoft.Network/virtualNetworks",
             "location": "[parameters('location')]",
             "properties": {
-                "addressSpace": {
-                    "addressPrefixes": [
-                        "[parameters('NIC_addressPrefix')]"
-                    ]
-                },
+                "addressSpace"              : "[parameters('NIC_addressPrefix')]",
+                "enableDdosProtection"      : "[parameters('NIC_enableDdosProtection')]",                
                 "subnets": [
                     {
-                        "name": "[parameters('NIC_subnetName')]",
+                        "name"              : "[parameters('NIC_subnetName')]",
                         "properties": {
-                            "addressPrefix": "[parameters('NIC_subnetAddressPrefix')]"
+                            "addressPrefix" : "[parameters('NIC_subnetAddressPrefix')]"
                         }
                     }
-                ],
-                "enableDdosProtection": "[parameters('NIC_enableDdosProtection')]"
+                ]
+                
             }
         }        
     ],

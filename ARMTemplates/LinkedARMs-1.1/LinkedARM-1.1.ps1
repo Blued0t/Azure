@@ -26,18 +26,16 @@
 
 [CmdletBinding()]
 param(
- [Parameter(Mandatory=$false)]
- [string]$subscriptionId = "4453e6df-6c31-4f35-b249-0316c780cba4",
-
+ [Parameter(Mandatory=$true)]
+ [string]$subscriptionId,
  [Parameter(Mandatory=$True)]
  [string]$resourceGroupName,
-
- [string]$resourceGroupLocation = "uksouth",
-
+ [Parameter(Mandatory=$True)]
+ [string]$resourceGroupLocation,
  [Parameter(Mandatory=$True)]
  [string]$deploymentName,
-
- [string]$templateFilePath = ".\ParentTemplate.json"
+ [Parameter(Mandatory=$True)]
+ [string]$templateFilePath
 )
 
 <#
@@ -49,8 +47,8 @@ Function RegisterRP {
         [string]$ResourceProviderNamespace
     )
 
-    Write-Host "Registering resource provider '$ResourceProviderNamespace'";
-    Register-AzureRmResourceProvider -ProviderNamespace $ResourceProviderNamespace;
+    Write-Output "Registering resource provider '$ResourceProviderNamespace'"
+    Register-AzureRmResourceProvider -ProviderNamespace $ResourceProviderNamespace
 }
 
 #******************************************************************************
@@ -60,41 +58,35 @@ Function RegisterRP {
 $ErrorActionPreference = "Stop"
 
 # sign in
-Write-Host "Logging in...";
-Login-AzureRmAccount;
+Write-Output "Logging in..."
+Login-AzureRmAccount
 
 # select subscription
-Write-Host "Selecting subscription '$subscriptionId'";
-Select-AzureRmSubscription -SubscriptionID $subscriptionId;
+Write-Output "Selecting subscription '$subscriptionId'"
+Select-AzureRmSubscription -SubscriptionID $subscriptionId
 
 # Register RPs
-$resourceProviders = @("microsoft.network");
+$resourceProviders = @("microsoft.network")
 if($resourceProviders.length) {
-    Write-Host "Registering resource providers"
+    Write-Output "Registering resource providers"
     foreach($resourceProvider in $resourceProviders) {
-        RegisterRP($resourceProvider);
+        RegisterRP($resourceProvider)
     }
 }
 
 #Create or check for existing resource group
 $resourceGroup = Get-AzureRmResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue
-if(!$resourceGroup)
+if($resourceGroup)
 {
-    Write-Host "Resource group '$resourceGroupName' does not exist. To create a new resource group, please enter a location.";
-    if(!$resourceGroupLocation) {
-        $resourceGroupLocation = Read-Host "resourceGroupLocation";
-    }
-    Write-Host "Creating resource group '$resourceGroupName' in location '$resourceGroupLocation'";
-    New-AzureRmResourceGroup -Name $resourceGroupName -Location $resourceGroupLocation
-}
-else{
-    Write-Host "Using existing resource group '$resourceGroupName'";
+    Write-Output "Deleting resource group $resourceGroupName"
+    Remove-AzureRmResourceGroup -ResourceGroupName $resourceGroupName -Force
 }
 
+Write-Output "Creating resource group '$resourceGroupName' in location '$resourceGroupLocation'"
+New-AzureRmResourceGroup -Name $resourceGroupName -Location $resourceGroupLocation
+
 # Start the deployment
-Write-Host "Starting deployment...";
+Write-Output "Starting deployment..."
 if(Test-Path $templateFilePath) {
-#    New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $deploymentName -TemplateFile $templateFilePath -TemplateParameterFile $parametersFilePath;
-#} else {
-    New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $deploymentName -TemplateFile $templateFilePath;
+    New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $deploymentName -TemplateFile $templateFilePath
 }

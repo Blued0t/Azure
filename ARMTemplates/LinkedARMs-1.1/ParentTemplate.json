@@ -12,26 +12,28 @@
 
     },
     "variables": {
-        "location"              : "uksouth",
-        "PublicIPName"          : "PubIP_1",
-        "PublicIPSKU"           : "Basic",
-        "PublicIPAllocation"    : "Dynamic",
-        "PublicIPidleTimeout"   : "15",
-        "PublicIPdomainLabel"   : "bluedot-arm",
-        "PublicIpAddressVersion": "IPv4"
+        "location"                  : "uksouth",
+        "PublicIPName"              : "PubIP",
+        "PublicIPSKU"               : "Basic",
+        "PublicIPAllocation"        : "Dynamic",
+        "PublicIPidleTimeout"       :  15,
+        "PublicIPdomainLabel"       : "myPublicIP-arm-v1",
+        "PublicIpAddressVersion"    : "IPv4",
+        "NIC_identity"              : "InternalNetwork",
+        "NIC_addressPrefix"         : "10.1.0.0/24",
+        "NIC_subnetName"            : "default",
+        "NIC_subnetAddressPrefix"   : "10.1.0.0/24",
+        "NIC_enableDdosProtection"  : false     
     },
     "resources": [
         {
             "name": "CreatePublicIP",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2016-09-01",
-            "tags": {
-                "displayName": "CreatePublicIP"
-            },
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('artifactsLocation'), '/linkedTemplates-1.1/pubIpAddress.json')]",
+                    "uri": "[concat(parameters('artifactsLocation'), '/LinkedTemplates-1.1/pubIpAddress.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -44,7 +46,27 @@
                     "PubIP_publicIpAddressVersion"  :{"value":"[variables('PublicIpAddressVersion')]"}
                 }
             }
-        }
+        },
+        {
+            "apiVersion": "2015-01-01",
+            "name": "Network-Interface",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('artifactsLocation'), '/LinkedTemplates-1.1/networkinterface.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location"                  :{"value":"[variables('location')]"},
+                    "NIC_Identity"              :{"value":"[variables('NIC_Identity')]"},
+                    "NIC_addressPrefix"         :{"value":"[variables('NIC_addressPrefix')]"},
+                    "NIC_subnetName"            :{"value":"[variables('NIC_subnetName')]"},
+                    "NIC_subnetAddressPrefix"   :{"value":"[variables('NIC_subnetAddressPrefix')]"},
+                    "NIC_enableDdosProtection"  :{"value":"[variables('NIC_enableDdosProtection')]"}
+                }
+            }
+        }         
     ],
     "outputs": {}
 }
