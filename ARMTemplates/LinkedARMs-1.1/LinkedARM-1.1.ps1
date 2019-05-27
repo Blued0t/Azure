@@ -1,9 +1,9 @@
 <#
  .SYNOPSIS
-    Deploys a template to Azure
+    Deploys a public IP address and a NIC using linked templates
 
  .DESCRIPTION
-    Deploys an Azure Resource Manager template
+    ParentTemplate calls pubIpAddress and networkInterface as linked templates
 
  .PARAMETER subscriptionId
     The subscription id where the template will be deployed.
@@ -20,8 +20,18 @@
  .PARAMETER templateFilePath
     Optional, path to the template file. Defaults to template.json.
 
- .PARAMETER parametersFilePath
-    Optional, path to the parameters file. Defaults to parameters.json. If file is not found, will prompt for parameter values based on template.
+.OUTPUTS
+  None
+
+.NOTES
+  Version:        1.0
+  Author:         Jon Kidd
+  Creation Date:  27.05.19
+  Purpose/Change: 
+  
+.EXAMPLE
+.\LinkedARM-1.1.ps1 -resourceGroupName:"Linked-ARM-1.1" -ame:"LinkedARMDeployment" -Verbose -subscriptionId:############## -resourceGroupLocation:uksouth -templateFilePath: ".\ParentTemplate.json"
+
 #>
 
 [CmdletBinding()]
