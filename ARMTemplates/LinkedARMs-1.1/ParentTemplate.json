@@ -17,7 +17,7 @@
         "PublicIPSKU"               : "Basic",
         "PublicIPAllocation"        : "Dynamic",
         "PublicIPidleTimeout"       :  15,
-        "PublicIPdomainLabel"       : "myPublicIP-arm-v1",
+        "PublicIPdomainLabel"       : "blued0t-ip",
         "PublicIpAddressVersion"    : "IPv4",
         "NIC_identity"              : "InternalNetwork",
         "NIC_addressPrefix"         : "10.1.0.0/24",
@@ -48,9 +48,9 @@
             }
         },
         {
-            "apiVersion": "2015-01-01",
             "name": "Network-Interface",
             "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2015-01-01",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {

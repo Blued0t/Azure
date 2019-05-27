@@ -50,7 +50,11 @@
             "type": "Microsoft.Network/virtualNetworks",
             "location": "[parameters('location')]",
             "properties": {
-                "addressSpace"              : "[parameters('NIC_addressPrefix')]",
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[parameters('NIC_addressPrefix')]"
+                    ]
+                },
                 "enableDdosProtection"      : "[parameters('NIC_enableDdosProtection')]",                
                 "subnets": [
                     {
