@@ -54,7 +54,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('artifactsLocation'), '/LinkedTemplates-1.1/networkinterface.json')]",
+                    "uri": "[concat(parameters('artifactsLocation'), '/LinkedTemplates-1.1/networkInterface.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
