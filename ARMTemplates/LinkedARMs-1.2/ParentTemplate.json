@@ -80,7 +80,7 @@
                 },
                 "parameters": {
                     "location"                 :{"value":"[variables('location')]"},
-                    "NSG_name   "              :{"value":"[variables('NSG_Name')]"}
+                    "NSG_name   "              :{"value":"[variables('NSG_name')]"}
                 }
             }
         }                 

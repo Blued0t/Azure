@@ -10,10 +10,10 @@
               "description": "Location for all resources."
             }
           },
-          "NSG_Name": {
+          "NSG_name": {
             "type": "string",
             "metadata": {
-              "description": "NIC Name"
+              "description": "NSG Name"
             }
           }
     },    
@@ -22,7 +22,7 @@
       {
         "apiVersion": "2019-02-01",
         "type": "Microsoft.Network/networkSecurityGroups",
-        "name": "[parameters('NSG_Name')]",
+        "name": "[parameters('NSG_name')]",
         "location": "[parameters('location')]",
         "properties": {
             "securityRules": [
