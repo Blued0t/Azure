@@ -4,7 +4,7 @@
     "parameters": {
         "artifactsLocation": {
             "type"          : "string",
-            "defaultValue"  : "https://raw.githubusercontent.com/Blued0t/Azure/master/ARMTemplates/LinkedARMs-1.1",
+            "defaultValue"  : "https://raw.githubusercontent.com/Blued0t/Azure/master/ARMTemplates/LinkedARMs-1.2/LinkedTemplates",
             "metadata": {
                 "description": "Linked template locations"
             }
@@ -19,11 +19,12 @@
         "PublicIPidleTimeout"       :  15,
         "PublicIPdomainLabel"       : "blued0t-ip",
         "PublicIpAddressVersion"    : "IPv4",
-        "nw_identity"              : "InternalNetwork",
-        "nw_addressPrefix"         : "10.1.0.0/24",
-        "nw_subnetName"            : "default",
-        "nw_subnetAddressPrefix"   : "10.1.0.0/24",
-        "nw_enableDdosProtection"  : false     
+        "nw_identity"               : "InternalNetwork",
+        "nw_addressPrefix"          : "10.1.0.0/24",
+        "nw_subnetName"             : "default",
+        "nw_subnetAddressPrefix"    : "10.1.0.0/24",
+        "nw_enableDdosProtection"   : false,
+        "NSG_Name"                  : "NSG"    
     },
     "resources": [
         {
@@ -33,7 +34,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('artifactsLocation'), '/LinkedTemplates-1.1/pubIpAddress.json')]",
+                    "uri": "[concat(parameters('artifactsLocation'), '/pubIpAddress.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -48,25 +49,41 @@
             }
         },
         {
-            "name": "Network-Interface",
+            "name": "Network",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('artifactsLocation'), '/LinkedTemplates-1.1/network.json')]",
+                    "uri": "[concat(parameters('artifactsLocation'), '/network.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "location"                  :{"value":"[variables('location')]"},
-                    "NIC_Identity"              :{"value":"[variables('nw_Identity')]"},
-                    "NIC_addressPrefix"         :{"value":"[variables('nw_addressPrefix')]"},
-                    "NIC_subnetName"            :{"value":"[variables('nw_subnetName')]"},
-                    "NIC_subnetAddressPrefix"   :{"value":"[variables('nw_subnetAddressPrefix')]"},
-                    "NIC_enableDdosProtection"  :{"value":"[variables('nw_enableDdosProtection')]"}
+                    "location"                 :{"value":"[variables('location')]"},
+                    "nw_Identity"              :{"value":"[variables('nw_Identity')]"},
+                    "nw_addressPrefix"         :{"value":"[variables('nw_addressPrefix')]"},
+                    "nw_subnetName"            :{"value":"[variables('nw_subnetName')]"},
+                    "nw_subnetAddressPrefix"   :{"value":"[variables('nw_subnetAddressPrefix')]"},
+                    "nw_enableDdosProtection"  :{"value":"[variables('nw_enableDdosProtection')]"}
                 }
             }
-        }         
+        },
+        {
+            "name": "NSG",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2015-01-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('artifactsLocation'), '/networkSecurityGroup.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location"                 :{"value":"[variables('location')]"},
+                    "NSG_name   "              :{"value":"[variables('NSG_Name')]"}
+                }
+            }
+        }                 
     ],
     "outputs": {}
 }

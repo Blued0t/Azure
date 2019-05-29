@@ -10,11 +10,12 @@
               "description": "Location for all resources."
             }
           },
-          "NIC_Identity": {
+          "NSG_Name": {
             "type": "string",
             "metadata": {
               "description": "NIC Name"
             }
+          }
     },    
     
     "resources": [
