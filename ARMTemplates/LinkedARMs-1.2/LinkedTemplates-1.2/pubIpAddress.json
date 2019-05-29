@@ -1,0 +1,72 @@
+
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+              "description": "Location for all resources."
+            }
+          },
+        "PubIP_name": {
+            "type": "string",
+            "metadata": {
+              "description": "Public IP Name"
+            }
+          },          
+        "PubIP_sku": {
+            "type": "string",
+            "metadata": {
+              "description": "Public SKU"
+            }
+          },  
+        "PubIP_publicIPAllocationMethod": {
+            "type": "string",
+            "metadata": {
+              "description": "Public IP Allocation Method"
+            }
+          },
+        "PubIP_idleTimeoutInMinutes": {
+            "type": "int",
+            "metadata": {
+              "description": "Public IP idle timeout"
+            }
+          },
+        "PubIP_domainNameLabel": {
+            "type": "string",
+            "metadata": {
+              "description": "Public IP domain name label"
+            }
+          },
+        "PubIP_publicIpAddressVersion": {
+            "type": "string",
+            "metadata": {
+              "description": "Public IP address version"
+            }
+          }
+    },    
+    
+    "resources": [
+        {
+            "comments": "PublicIP",
+            "apiVersion": "2018-08-01",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "name": "[parameters('PubIP_name')]",
+            "location": "[parameters('location')]",
+            "sku": {
+                "name": "[parameters('PubIP_sku')]"
+            },
+            "properties": {
+                "publicIPAllocationMethod": "[parameters('PubIP_publicIPAllocationMethod')]",
+                "idleTimeoutInMinutes": "[parameters('PubIP_idleTimeoutInMinutes')]",
+                "publicIpAddressVersion": "[parameters('PubIP_publicIpAddressVersion')]",
+                "dnsSettings": {
+                    "domainNameLabel": "[parameters('PubIP_domainNameLabel')]"
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}

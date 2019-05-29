@@ -10,57 +10,57 @@
               "description": "Location for all resources."
             }
           },
-          "NIC_Identity": {
+          "nw_Identity": {
             "type": "string",
             "metadata": {
-              "description": "NIC Name"
+              "description": "Network Name"
             }
           }, 
-          "NIC_addressPrefix": {
+          "nw_addressPrefix": {
             "type": "string",
             "metadata": {
-              "description": "NIC Address Prefix"
+              "description": "Network Address Prefix"
             }
           },  
-          "NIC_subnetName": {
+          "nw_subnetName": {
             "type": "string",
             "metadata": {
-              "description": "NIC subnetname"
+              "description": "Network subnetname"
             }
           },  
-          "NIC_subnetAddressPrefix": {
+          "nw_subnetAddressPrefix": {
             "type": "string",
             "metadata": {
-              "description": "NIC Subnet prefix"
+              "description": "Network Subnet prefix"
             }
           }, 
-          "NIC_enableDdosProtection": {
+          "nw_enableDdosProtection": {
             "type": "bool",
             "metadata": {
-              "description": "NIC enableDdos protections"
+              "description": "Network enableDdos protections"
             }
           }
     },    
     
     "resources": [
         {
-            "comments": "NetworkInterface",
+            "comments": "Network",
             "apiVersion": "2018-08-01",
-            "name": "[parameters('NIC_Identity')]",
+            "name": "[parameters('nw_Identity')]",
             "type": "Microsoft.Network/virtualNetworks",
             "location": "[parameters('location')]",
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
-                        "[parameters('NIC_addressPrefix')]"
+                        "[parameters('nw_addressPrefix')]"
                     ]
                 },
-                "enableDdosProtection"      : "[parameters('NIC_enableDdosProtection')]",                
+                "enableDdosProtection"      : "[parameters('nw_enableDdosProtection')]",                
                 "subnets": [
                     {
-                        "name"              : "[parameters('NIC_subnetName')]",
+                        "name"              : "[parameters('nw_subnetName')]",
                         "properties": {
-                            "addressPrefix" : "[parameters('NIC_subnetAddressPrefix')]"
+                            "addressPrefix" : "[parameters('nw_subnetAddressPrefix')]"
                         }
                     }
                 ]

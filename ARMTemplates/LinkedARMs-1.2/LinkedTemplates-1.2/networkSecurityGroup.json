@@ -1,0 +1,51 @@
+
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+              "description": "Location for all resources."
+            }
+          },
+          "NIC_Identity": {
+            "type": "string",
+            "metadata": {
+              "description": "NIC Name"
+            }
+    },    
+    
+    "resources": [
+      {
+        "apiVersion": "2019-02-01",
+        "type": "Microsoft.Network/networkSecurityGroups",
+        "name": "[parameters('NSG_Name')]",
+        "location": "[parameters('location')]",
+        "properties": {
+            "securityRules": [
+                {
+                  "name": "winrm_rule",
+                  "properties": {
+                    "description": "Allows WinRM on 5985",
+                    "protocol": "Tcp",
+                    "sourcePortRanges": [
+                        "5385-5386"
+                      ],
+                      "destinationPortRanges": [
+                        "5385-5386"
+                      ],
+                    "sourceAddressPrefix": "*",
+                    "destinationAddressPrefix": "*",
+                    "access": "Allow",
+                    "priority": 101,
+                    "direction": "Inbound"
+                  }
+                }
+            ]
+        }
+    }       
+    ],
+    "outputs": {}
+}

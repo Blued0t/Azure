@@ -48,7 +48,7 @@
             }
         },
         {
-            "name": "Network",
+            "name": "Network-Interface",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",
             "properties": {
@@ -59,11 +59,11 @@
                 },
                 "parameters": {
                     "location"                  :{"value":"[variables('location')]"},
-                    "nw_Identity"              :{"value":"[variables('nw_Identity')]"},
-                    "nw_addressPrefix"         :{"value":"[variables('nw_addressPrefix')]"},
-                    "nw_subnetName"            :{"value":"[variables('nw_subnetName')]"},
-                    "nw_subnetAddressPrefix"   :{"value":"[variables('nw_subnetAddressPrefix')]"},
-                    "nw_enableDdosProtection"  :{"value":"[variables('nw_enableDdosProtection')]"}
+                    "NIC_Identity"              :{"value":"[variables('nw_Identity')]"},
+                    "NIC_addressPrefix"         :{"value":"[variables('nw_addressPrefix')]"},
+                    "NIC_subnetName"            :{"value":"[variables('nw_subnetName')]"},
+                    "NIC_subnetAddressPrefix"   :{"value":"[variables('nw_subnetAddressPrefix')]"},
+                    "NIC_enableDdosProtection"  :{"value":"[variables('nw_enableDdosProtection')]"}
                 }
             }
         }         
