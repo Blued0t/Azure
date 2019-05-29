@@ -24,13 +24,13 @@
   None
 
 .NOTES
-  Version:        1.0
+  Version:        1.2
   Author:         Jon Kidd
   Creation Date:  27.05.19
   Purpose/Change: 
   
 .EXAMPLE
-.\LinkedARM-1.1.ps1 -resourceGroupName:"Linked-ARM-1.1" -ame:"LinkedARMDeployment" -Verbose -subscriptionId:############## -resourceGroupLocation:uksouth -templateFilePath: ".\ParentTemplate.json"
+.\LinkedARM-1.2.ps1 -resourceGroupName:"Linked-ARM-1.2" -ame:"LinkedARMDeployment" -Verbose -subscriptionId:############## -resourceGroupLocation:uksouth -templateFilePath: ".\ParentTemplate.json"
 
 #>
 

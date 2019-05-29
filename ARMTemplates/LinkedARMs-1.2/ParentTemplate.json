@@ -24,7 +24,7 @@
         "nw_subnetName"             : "default",
         "nw_subnetAddressPrefix"    : "10.1.0.0/24",
         "nw_enableDdosProtection"   : false,
-        "NSG_Name"                  : "NSG"    
+        "NSG_name"                  : "NSG"    
     },
     "resources": [
         {
