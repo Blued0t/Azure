@@ -4,7 +4,7 @@
     "parameters": {
         "artifactsLocation": {
             "type"          : "string",
-            "defaultValue"  : "https://raw.githubusercontent.com/Blued0t/Azure/master/ARMTemplates/LinkedARMs-1.2/LinkedTemplates",
+            "defaultValue"  : "https://raw.githubusercontent.com/Blued0t/Azure/master/ARMTemplates/LinkedARMs-1.2/LinkedTemplates/",
             "metadata": {
                 "description": "Linked template locations"
             }
@@ -24,7 +24,9 @@
         "nw_subnetName"             : "default",
         "nw_subnetAddressPrefix"    : "10.1.0.0/24",
         "nw_enableDdosProtection"   : false,
-        "NSG_name"                  : "NSG"    
+        "NSG_name"                  : "NSG", 
+        "storageAccountName"        : "ARM-Storage", 
+        "NIC_Name"                  : "NetworkNIC" 
     },
     "resources": [
         {
@@ -34,7 +36,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('artifactsLocation'), '/pubIpAddress.json')]",
+                    "uri": "[concat(parameters('artifactsLocation'), 'pubIpAddress.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -55,7 +57,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('artifactsLocation'), '/network.json')]",
+                    "uri": "[concat(parameters('artifactsLocation'), 'network.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -75,15 +77,47 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('artifactsLocation'), '/networkSecurityGroup.json')]",
+                    "uri": "[concat(parameters('artifactsLocation'), 'networkSecurityGroup.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
                     "location"                 :{"value":"[variables('location')]"},
-                    "NSG_name   "              :{"value":"[variables('NSG_name')]"}
+                    "NSG_name"                 :{"value":"[variables('NSG_name')]"}
                 }
             }
-        }                 
+        },
+        {
+            "name": "StorageAccount",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2015-01-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('artifactsLocation'), 'storageAccount.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location"                 :{"value":"[variables('location')]"},
+                    "stgName"                  :{"value":"[variables('storageAccountName')]"}
+                }
+            }
+        },
+        {
+            "name": "NetworkInterface",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2015-01-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('artifactsLocation'), 'networkInterface.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location"                 :{"value":"[variables('location')]"},
+                    "NIC_Name"                  :{"value":"[variables('NIC_Name')]"}
+                }
+            }
+        }                                
     ],
     "outputs": {}
 }
