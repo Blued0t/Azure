@@ -89,11 +89,11 @@ $resourceGroup = Get-AzureRmResourceGroup -Name $resourceGroupName -ErrorAction 
 if($resourceGroup)
 {
     Write-Output "Deleting resource group $resourceGroupName"
-    Remove-AzureRmResourceGroup -ResourceGroupName $resourceGroupName -Force
+    #Remove-AzureRmResourceGroup -ResourceGroupName $resourceGroupName -Force
 }
 
 Write-Output "Creating resource group '$resourceGroupName' in location '$resourceGroupLocation'"
-New-AzureRmResourceGroup -Name $resourceGroupName -Location $resourceGroupLocation
+#New-AzureRmResourceGroup -Name $resourceGroupName -Location $resourceGroupLocation
 
 # Start the deployment
 Write-Output "Starting deployment..."

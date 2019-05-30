@@ -25,8 +25,12 @@
         "nw_subnetAddressPrefix"    : "10.1.0.0/24",
         "nw_enableDdosProtection"   : false,
         "NSG_name"                  : "NSG", 
-        "storageAccountName"        : "ARM-Storage", 
-        "NIC_Name"                  : "NetworkNIC" 
+        "storageAccountName"        : "bdarmstorage", 
+        "NIC_Name"                  : "NetworkNIC",
+        "VM_Name"                   : "blued0tVM",
+        "VM_user"                   : "blueadmin",
+        "VM_pw"                     : "blueadm1n",
+        "VM_OS"                     : "2016-Datacenter"
     },
     "resources": [
         {
@@ -117,7 +121,26 @@
                     "NIC_Name"                  :{"value":"[variables('NIC_Name')]"}
                 }
             }
-        }                                
+        },
+        {
+            "name": "VirtualMachine",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2015-01-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('artifactsLocation'), 'virtualMachine.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location"                  :{"value":"[variables('location')]"},
+                    "VM_name"                   :{"value":"[variables('VM_Name')]"},
+                    "adminUsername"             :{"value":"[variables('VM_user')]"},
+                    "adminPassword"             :{"value":"[variables('VM_pw')]"},
+                    "windowsOSVersion"          :{"value":"[variables('VM_OS')]"}
+                }
+            }
+        }                                         
     ],
     "outputs": {}
 }
