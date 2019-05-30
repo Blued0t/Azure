@@ -34,8 +34,12 @@
               "description": "Windows OS"
             }
           }                               
-    },    
+    },
     
+    "variables": {
+        "storageAccountName"  : "bdarmstorage"
+    },
+        
     "resources": [
       {
       "comments"    : "VirtualMachine",  
@@ -81,7 +85,7 @@
         "diagnosticsProfile": {
           "bootDiagnostics": {
             "enabled": true,
-            "storageUri": "'http://bdarmstorage.blob.core.windows.net'"
+            "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))).primaryEndpoints.blob]"
           }
         }
       }
