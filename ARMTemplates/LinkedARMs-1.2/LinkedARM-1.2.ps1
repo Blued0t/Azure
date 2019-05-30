@@ -93,7 +93,7 @@ if($resourceGroup)
 }
 
 Write-Output "Creating resource group '$resourceGroupName' in location '$resourceGroupLocation'"
-#New-AzureRmResourceGroup -Name $resourceGroupName -Location $resourceGroupLocation
+New-AzureRmResourceGroup -Name $resourceGroupName -Location $resourceGroupLocation
 
 # Start the deployment
 Write-Output "Starting deployment..."

@@ -29,7 +29,7 @@
         "NIC_Name"                  : "NetworkNIC",
         "VM_Name"                   : "blued0tVM",
         "VM_user"                   : "blueadmin",
-        "VM_pw"                     : "blueadm1n",
+        "VM_pw"                     : "blueadm1n!",
         "VM_OS"                     : "2016-Datacenter"
     },
     "resources": [

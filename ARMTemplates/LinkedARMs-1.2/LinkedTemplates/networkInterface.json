@@ -26,6 +26,10 @@
         "name"      : "[parameters('NIC_Name')]",
         "location"  : "[parameters('location')]",
 
+        "dependsOn": [
+          "[resourceId('Microsoft.Network/networkSecurityGroups','PubIP')]"
+          ],
+
       "properties": {
         "ipConfigurations": [
           {
