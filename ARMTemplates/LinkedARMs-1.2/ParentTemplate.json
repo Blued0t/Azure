@@ -117,7 +117,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "location"                 :{"value":"[variables('location')]"},
+                    "location"                  :{"value":"[variables('location')]"},
                     "NIC_Name"                  :{"value":"[variables('NIC_Name')]"}
                 }
             }

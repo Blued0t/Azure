@@ -80,8 +80,8 @@
         },
         "diagnosticsProfile": {
           "bootDiagnostics": {
-            "enabled": true,
-            "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', 'bdarmstorage')).primaryEndpoints.blob]"
+            "enabled": false,
+            "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/','bdarmstorage')).primaryEndpoints.blob]"
           }
         }
       }
