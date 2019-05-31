@@ -24,7 +24,7 @@
   None
 
 .NOTES
-  Version:        1.2
+  Version:        1.3
   Author:         Jon Kidd
   Creation Date:  31.05.19
   Purpose/Change:
@@ -33,7 +33,7 @@
   No reference or depends actions 
   
 .EXAMPLE
-.\LinkedARM-1.2.ps1 -resourceGroupName:"Linked-ARM-1.2" -ame:"LinkedARMDeployment" -Verbose -subscriptionId:############## -resourceGroupLocation:uksouth -templateFilePath: ".\ParentTemplate.json"
+.\LinkedARM-1.3.ps1 -resourceGroupName:"Linked-ARM-1.2" -ame:"LinkedARMDeployment" -Verbose -subscriptionId:############## -resourceGroupLocation:uksouth -templateFilePath: ".\ParentTemplate.json"
 
 #>
 

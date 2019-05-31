@@ -1,0 +1,96 @@
+
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+              "description": "Location for all resources."
+            }
+          },
+          "VM_name": {
+            "type": "string",
+            "metadata": {
+              "description": "VM Name"
+            }
+          },
+          "adminUsername": {
+            "type": "string",
+            "metadata": {
+              "description": "Admin UserName"
+            }
+          },
+          "adminPassword": {
+            "type": "string",
+            "metadata": {
+              "description": "Admin Password"
+            }
+          },
+          "windowsOSVersion": {
+            "type": "string",
+            "metadata": {
+              "description": "Windows OS"
+            }
+          }                               
+    },
+    
+    "variables": {
+        "storageAccountName"  : "bdarmstorage"
+    },
+        
+    "resources": [
+      {
+      "comments"    : "VirtualMachine",  
+      "type"        : "Microsoft.Compute/virtualMachines",
+      "apiVersion"  : "2018-10-01",
+      "name"        : "[parameters('VM_name')]",
+      "location"    : "[parameters('location')]",
+
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "Standard_A2"
+        },
+        "osProfile": {
+          "computerName"  : "[parameters('VM_name')]",
+          "adminUsername" : "[parameters('adminUsername')]",
+          "adminPassword" : "[parameters('adminPassword')]"
+        },
+        "storageProfile": {
+          "imageReference": {
+            "publisher"   : "MicrosoftWindowsServer",
+            "offer"       : "WindowsServer",
+            "sku"         : "[parameters('windowsOSVersion')]",
+            "version"     : "latest"
+          },
+          "osDisk": {
+            "createOption": "FromImage"
+          },
+          "dataDisks": [
+            {
+              "diskSizeGB"  : 1023,
+              "lun"         : 0,
+              "createOption": "Empty"
+            }
+          ]
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces','NetworkNIC')]"
+            }
+          ]
+        },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": true,
+            "storageUri": "https://bdarmstorage.blob.core.windows.net/"
+          }
+        }
+      }
+    }
+  ],
+  "outputs": {}
+  
+}
