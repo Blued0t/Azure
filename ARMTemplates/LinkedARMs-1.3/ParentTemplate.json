@@ -64,8 +64,14 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "location"                  :{"value":"[variables('location')]"},
-                    "NIC_Name"                  :{"value":"[variables('NIC_Name')]"}
+                    "location"                      :{"value":"[variables('location')]"},
+                    "NIC_Name"                      :{"value":"[variables('NIC_Name')]"},
+                    "PubIP_name"                    :{"value":"[variables('PublicIPName')]"},
+                    "PubIP_sku"                     :{"value":"[variables('PublicIPSKU')]"},
+                    "PubIP_publicIPAllocationMethod":{"value":"[variables('PublicIPAllocation')]"},
+                    "PubIP_idleTimeoutInMinutes"    :{"value":"[variables('PublicIPidleTimeout')]"},
+                    "PubIP_domainNameLabel"         :{"value":"[variables('PublicIPdomainLabel')]"},
+                    "PubIP_publicIpAddressVersion"  :{"value":"[variables('PublicIpAddressVersion')]"}
                 }
             }
         },        

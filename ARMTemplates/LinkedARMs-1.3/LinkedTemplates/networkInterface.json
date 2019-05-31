@@ -15,19 +15,45 @@
             "metadata": {
               "description": "Network Interface Name"
             }
+          },
+          "PubIP_name": {
+            "type": "string",
+            "metadata": {
+              "description": "Public IP Name"
+            }
+          },          
+        "PubIP_sku": {
+            "type": "string",
+            "metadata": {
+              "description": "Public SKU"
+            }
+          },  
+        "PubIP_publicIPAllocationMethod": {
+            "type": "string",
+            "metadata": {
+              "description": "Public IP Allocation Method"
+            }
+          },
+        "PubIP_idleTimeoutInMinutes": {
+            "type": "int",
+            "metadata": {
+              "description": "Public IP idle timeout"
+            }
+          },
+        "PubIP_domainNameLabel": {
+            "type": "string",
+            "metadata": {
+              "description": "Public IP domain name label"
+            }
+          },
+        "PubIP_publicIpAddressVersion": {
+            "type": "string",
+            "metadata": {
+              "description": "Public IP address version"
+            }
           }
     },
-    "variables": {
-      "location"                  : "uksouth",
-      "PublicIPName"              : "PubIP",
-      "PublicIPSKU"               : "Basic",
-      "PublicIPAllocation"        : "Dynamic",
-      "PublicIPidleTimeout"       :  15,
-      "PublicIPdomainLabel"       : "blued0t-ip",
-      "PublicIpAddressVersion"    : "IPv4"
-    },
-
-    
+   
     "resources": [
       {
         "comments"  : "NetworkInterface",
@@ -54,8 +80,8 @@
         ]
       },
       "dependsOn": [
-        "publicIpTemplate"      
-    ]
+        "publicIpTemplate"     
+      ]
     },
     {
       "type": "Microsoft.Resources/deployments",
@@ -68,12 +94,12 @@
               "contentVersion": "1.0.0.0"
           },
           "parameters":{
-              "PubIP_name"                    :{"value":"[variables('PublicIPName')]"},
-              "PubIP_sku"                     :{"value":"[variables('PublicIPSKU')]"},
-              "PubIP_publicIPAllocationMethod":{"value":"[variables('PublicIPAllocation')]"},
-              "PubIP_idleTimeoutInMinutes"    :{"value":"[variables('PublicIPidleTimeout')]"},
-              "PubIP_domainNameLabel"         :{"value":"[variables('PublicIPdomainLabel')]"},
-              "PubIP_publicIpAddressVersion"  :{"value":"[variables('PublicIpAddressVersion')]"}
+              "PubIP_name"                    :{"value":"[parameters('PubIP_name')]"},
+              "PubIP_sku"                     :{"value":"[parameters('PubIP_sku')]"},
+              "PubIP_publicIPAllocationMethod":{"value":"[parameters('PubIP_publicIPAllocationMethod')]"},
+              "PubIP_idleTimeoutInMinutes"    :{"value":"[parameters('PubIP_idleTimeoutInMinutes')]"},
+              "PubIP_domainNameLabel"         :{"value":"[parameters('PubIP_domainNameLabel')]"},
+              "PubIP_publicIpAddressVersion"  :{"value":"[parameters('PubIP_publicIpAddressVersion')]"}
           }
       }
   }        
