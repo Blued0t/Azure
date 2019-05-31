@@ -15,43 +15,8 @@
             "metadata": {
               "description": "Network Interface Name"
             }
-          },
-          "PubIP_name": {
-            "type": "string",
-            "metadata": {
-              "description": "Public IP Name"
-            }
-          },          
-        "PubIP_sku": {
-            "type": "string",
-            "metadata": {
-              "description": "Public SKU"
-            }
-          },  
-        "PubIP_publicIPAllocationMethod": {
-            "type": "string",
-            "metadata": {
-              "description": "Public IP Allocation Method"
-            }
-          },
-        "PubIP_idleTimeoutInMinutes": {
-            "type": "int",
-            "metadata": {
-              "description": "Public IP idle timeout"
-            }
-          },
-        "PubIP_domainNameLabel": {
-            "type": "string",
-            "metadata": {
-              "description": "Public IP domain name label"
-            }
-          },
-        "PubIP_publicIpAddressVersion": {
-            "type": "string",
-            "metadata": {
-              "description": "Public IP address version"
-            }
           }
+
     },
     "variables": {
       "location"                  : "uksouth",
