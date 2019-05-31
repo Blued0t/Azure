@@ -44,6 +44,11 @@
         ]
       }
     }        
-    ],
-    "outputs": {}
+    ],    
+    "outputs": {
+      "messageFromLinkedTemplate": {
+          "type": "string",
+          "value": "[reference('CreatePublicIP').outputs.referenceOutput.value]"
+      }
+  }
 }

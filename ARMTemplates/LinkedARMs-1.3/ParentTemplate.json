@@ -52,13 +52,7 @@
                     "PubIP_domainNameLabel"         :{"value":"[variables('PublicIPdomainLabel')]"},
                     "PubIP_publicIpAddressVersion"  :{"value":"[variables('PublicIpAddressVersion')]"}
                 }
-            },
-            "outputs": {
-                "messageFromLinkedTemplate": {
-                    "type": "string",
-                    "value": "[reference('CreatePublicIP').outputs.referenceOutput.value]"
-                }
-            }
+            } 
         },
         {
             "name": "Network",
