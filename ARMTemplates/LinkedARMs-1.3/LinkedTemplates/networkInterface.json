@@ -81,7 +81,7 @@
     "outputs": {
       "messageFromLinkedTemplate": {
           "type": "string",
-          "value": "[reference('CreatePublicIP').outputs.referenceOutput.value]"
+          "value": "[reference('publicIpTemplate').outputs.referenceOutput.value]"
       }
   }
 }
