@@ -34,27 +34,6 @@
     },
     "resources": [
         {
-            "name": "CreatePublicIP",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2016-09-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[concat(parameters('artifactsLocation'), 'pubIpAddress.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "location"                      :{"value":"[variables('location')]"},
-                    "PubIP_name"                    :{"value":"[variables('PublicIPName')]"},
-                    "PubIP_sku"                     :{"value":"[variables('PublicIPSKU')]"},
-                    "PubIP_publicIPAllocationMethod":{"value":"[variables('PublicIPAllocation')]"},
-                    "PubIP_idleTimeoutInMinutes"    :{"value":"[variables('PublicIPidleTimeout')]"},
-                    "PubIP_domainNameLabel"         :{"value":"[variables('PublicIPdomainLabel')]"},
-                    "PubIP_publicIpAddressVersion"  :{"value":"[variables('PublicIpAddressVersion')]"}
-                }
-            } 
-        },
-        {
             "name": "Network",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",

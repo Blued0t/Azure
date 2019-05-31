@@ -69,9 +69,9 @@
         }
     ],
     "outputs": {
-      "referenceOutput": {
-        "type": "object",
-        "value": "[reference(parameters('PubIP_name'))]"
+      "resourceID": {
+          "type": "string",
+          "value": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('PubIP_name'))]"
       }
     }
 }

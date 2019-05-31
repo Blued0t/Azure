@@ -15,8 +15,54 @@
             "metadata": {
               "description": "Network Interface Name"
             }
+          },
+          "PubIP_name": {
+            "type": "string",
+            "metadata": {
+              "description": "Public IP Name"
+            }
+          },          
+        "PubIP_sku": {
+            "type": "string",
+            "metadata": {
+              "description": "Public SKU"
+            }
+          },  
+        "PubIP_publicIPAllocationMethod": {
+            "type": "string",
+            "metadata": {
+              "description": "Public IP Allocation Method"
+            }
+          },
+        "PubIP_idleTimeoutInMinutes": {
+            "type": "int",
+            "metadata": {
+              "description": "Public IP idle timeout"
+            }
+          },
+        "PubIP_domainNameLabel": {
+            "type": "string",
+            "metadata": {
+              "description": "Public IP domain name label"
+            }
+          },
+        "PubIP_publicIpAddressVersion": {
+            "type": "string",
+            "metadata": {
+              "description": "Public IP address version"
+            }
           }
-    },    
+    },
+    "variables": {
+      "location"                  : "uksouth",
+      "PublicIPName"              : "PubIP",
+      "PublicIPSKU"               : "Basic",
+      "PublicIPAllocation"        : "Dynamic",
+      "PublicIPidleTimeout"       :  15,
+      "PublicIPdomainLabel"       : "blued0t-ip",
+      "PublicIpAddressVersion"    : "IPv4"
+    },
+
     
     "resources": [
       {
@@ -42,8 +88,31 @@
             }
           
         ]
+      },
+      "dependsOn": [
+        "publicIpTemplate"      
+    ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "name": "publicIpTemplate",
+      "properties": {
+          "mode": "Incremental",
+          "templateLink": {
+              "uri": "[uri(deployment().properties.templateLink.uri, 'pubIpAddress.json')]",
+              "contentVersion": "1.0.0.0"
+          },
+          "parameters":{
+              "PubIP_name"                    :{"value":"[variables('PublicIPName')]"},
+              "PubIP_sku"                     :{"value":"[variables('PublicIPSKU')]"},
+              "PubIP_publicIPAllocationMethod":{"value":"[variables('PublicIPAllocation')]"},
+              "PubIP_idleTimeoutInMinutes"    :{"value":"[variables('PublicIPidleTimeout')]"},
+              "PubIP_domainNameLabel"         :{"value":"[variables('PublicIPdomainLabel')]"},
+              "PubIP_publicIpAddressVersion"  :{"value":"[variables('PublicIpAddressVersion')]"}
+          }
       }
-    }        
+  }        
     ],    
     "outputs": {
       "messageFromLinkedTemplate": {
