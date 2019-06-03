@@ -60,10 +60,10 @@
             },
             "properties": {
                 "publicIPAllocationMethod": "[parameters('PubIP_publicIPAllocationMethod')]",
-                "idleTimeoutInMinutes": "[parameters('PubIP_idleTimeoutInMinutes')]",
-                "publicIpAddressVersion": "[parameters('PubIP_publicIpAddressVersion')]",
+                "idleTimeoutInMinutes"    : "[parameters('PubIP_idleTimeoutInMinutes')]",
+                "publicIpAddressVersion"  : "[parameters('PubIP_publicIpAddressVersion')]",
                 "dnsSettings": {
-                    "domainNameLabel": "[parameters('PubIP_domainNameLabel')]"
+                    "domainNameLabel"     : "[parameters('PubIP_domainNameLabel')]"
                 }
             }
         }

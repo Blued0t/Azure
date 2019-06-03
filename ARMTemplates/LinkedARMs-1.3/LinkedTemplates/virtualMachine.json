@@ -10,6 +10,12 @@
               "description": "Location for all resources."
             }
           },
+          "artifactsLocation": {
+            "type": "string",
+            "metadata": {
+              "description": "artifacts Locations"
+            }
+          },
           "VM_name": {
             "type": "string",
             "metadata": {
@@ -33,12 +39,15 @@
             "metadata": {
               "description": "Windows OS"
             }
-          }                               
+          },
+          "stgName": {
+            "type": "string",
+            "metadata": {
+              "description": "Storage Account Name"
+            }
+          }                                    
     },
     
-    "variables": {
-        "storageAccountName"  : "bdarmstorage"
-    },
         
     "resources": [
       {
@@ -88,6 +97,22 @@
             "storageUri": "https://bdarmstorage.blob.core.windows.net/"
           }
         }
+      }
+    },
+    {
+      "name": "StorageAccount",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "properties": {
+          "mode": "Incremental",
+          "templateLink": {
+              "uri": "[concat(parameters('artifactsLocation'), 'storageAccount.json')]",
+              "contentVersion": "1.0.0.0"
+          },
+          "parameters": {
+              "location"                 :{"value":"[parameters('location')]"},
+              "stgName"                  :{"value":"[parameters('stgName')]"}
+          }
       }
     }
   ],

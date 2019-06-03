@@ -68,5 +68,10 @@
             }
         }        
     ],
-    "outputs": {}
+    "outputs": {
+      "resourceID": {
+          "type": "string",
+          "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('nw_subnetName'))]"
+      }
+    }
 }
