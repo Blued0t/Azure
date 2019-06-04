@@ -105,10 +105,10 @@
             "properties": {
               "privateIPAllocationMethod" : "Dynamic",
               "publicIPAddress": {
-                "id"                      : "[resourceId('Microsoft.Network/publicIPAddresses','PubIP')]"
+                "id"                      : "[reference('publicIpTemplate').outputs.resourceID.value]"
               },
               "subnet": {
-                "id"                      : "[resourceId('Microsoft.Network/virtualNetworks/subnets', 'InternalNetwork', 'default')]"
+                "id"                      : "[reference('Network').outputs.resourceID.value]"
               }
               }
             }
@@ -119,8 +119,47 @@
         "publicIpTemplate",
         "Network"    
       ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "name": "publicIpTemplate",
+      "properties": {
+          "mode": "Incremental",
+          "templateLink": {
+              "uri": "[concat(parameters('artifactsLocation'), 'pubIpAddress.json')]",
+              "contentVersion": "1.0.0.0"
+          },
+          "parameters":{
+              "PubIP_name"                    :{"value":"[parameters('PubIP_name')]"},
+              "PubIP_sku"                     :{"value":"[parameters('PubIP_sku')]"},
+              "PubIP_publicIPAllocationMethod":{"value":"[parameters('PubIP_publicIPAllocationMethod')]"},
+              "PubIP_idleTimeoutInMinutes"    :{"value":"[parameters('PubIP_idleTimeoutInMinutes')]"},
+              "PubIP_domainNameLabel"         :{"value":"[parameters('PubIP_domainNameLabel')]"},
+              "PubIP_publicIpAddressVersion"  :{"value":"[parameters('PubIP_publicIpAddressVersion')]"}
+          }
+      }
+  },
+  {
+    "name": "Network",
+    "type": "Microsoft.Resources/deployments",
+    "apiVersion": "2015-01-01",
+    "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+            "uri": "[concat(parameters('artifactsLocation'), 'network.json')]",
+            "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+            "location"                 :{"value":"[parameters('location')]"},
+            "nw_Identity"              :{"value":"[parameters('nw_Identity')]"},
+            "nw_addressPrefix"         :{"value":"[parameters('nw_addressPrefix')]"},
+            "nw_subnetName"            :{"value":"[parameters('nw_subnetName')]"},
+            "nw_subnetAddressPrefix"   :{"value":"[parameters('nw_subnetAddressPrefix')]"},
+            "nw_enableDdosProtection"  :{"value":"[parameters('nw_enableDdosProtection')]"}
+        }
     }
-       
+  }        
     ],    
   "outputs": {}
 }
