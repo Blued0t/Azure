@@ -114,11 +114,7 @@
             }
           
         ]
-      },
-      "dependsOn": [
-        "publicIpTemplate",
-        "Network"    
-      ]
+      }
     }
        
     ],    
