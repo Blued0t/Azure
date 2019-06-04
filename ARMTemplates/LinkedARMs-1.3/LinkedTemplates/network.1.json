@@ -1,0 +1,74 @@
+
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+              "description": "Location for all resources."
+            }
+          },
+          "nw_Identity": {
+            "type": "string",
+            "metadata": {
+              "description": "Network Name"
+            }
+          }, 
+          "nw_addressPrefix": {
+            "type": "string",
+            "metadata": {
+              "description": "Network Address Prefix"
+            }
+          },  
+          "nw_subnetName": {
+            "type": "string",
+            "metadata": {
+              "description": "Network subnetname"
+            }
+          },  
+          "nw_subnetAddressPrefix": {
+            "type": "string",
+            "metadata": {
+              "description": "Network Subnet prefix"
+            }
+          }, 
+          "nw_enableDdosProtection": {
+            "type": "bool",
+            "metadata": {
+              "description": "Network enableDdos protections"
+            }
+          }
+    },    
+    
+    "resources": [
+        {
+            "comments": "Network",
+            "apiVersion": "2018-08-01",
+            "name": "[parameters('nw_Identity')]",
+            "type": "Microsoft.Network/virtualNetworks",
+            "location": "[parameters('location')]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[parameters('nw_addressPrefix')]"
+                    ]
+                },
+                "enableDdosProtection"      : "[parameters('nw_enableDdosProtection')]",                
+                "subnets": [
+                    {
+                        "name"              : "[parameters('nw_subnetName')]",
+                        "properties": {
+                            "addressPrefix" : "[parameters('nw_subnetAddressPrefix')]"
+                        }
+                    }
+                ]
+                
+            }
+        }        
+    ],
+    "outputs": {
+
+    }
+}
