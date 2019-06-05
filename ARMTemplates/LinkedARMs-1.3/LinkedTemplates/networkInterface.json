@@ -108,7 +108,7 @@
                 "id"                      : "[resourceId('Microsoft.Network/publicIPAddresses','PubIP')]"
               },
               "subnet": {
-                "id"                      : "[reference('Network').outputs.resourceID.value]"
+                "id"                      : "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('nw_subnetName'))]"
               }
               }
             }
