@@ -71,7 +71,7 @@
   "outputs": {
     "resourceID": {
       "type": "string",
-      "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('nw_subnetName'))]"
+      "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('nw_Identity'), parameters('nw_subnetName'))]"
     }
   }
 }
