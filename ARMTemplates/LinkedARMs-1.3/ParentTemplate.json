@@ -34,18 +34,23 @@
     },
     "resources": [
         {
-            "name": "NetworkInterface",
+            "name": "VirtualMachine",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('artifactsLocation'), 'networkInterface.json')]",
+                    "uri": "[concat(parameters('artifactsLocation'), 'virtualMachine.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
                     "artifactsLocation"             :{"value":"[parameters('artifactsLocation')]"},
                     "location"                      :{"value":"[variables('location')]"},
+                    "VM_name"                       :{"value":"[variables('VM_Name')]"},
+                    "adminUsername"                 :{"value":"[variables('VM_user')]"},
+                    "adminPassword"                 :{"value":"[variables('VM_pw')]"},
+                    "windowsOSVersion"              :{"value":"[variables('VM_OS')]"},
+                    "stgName"                       :{"value":"[variables('storageAccountName')]"},
                     "NIC_Name"                      :{"value":"[variables('NIC_Name')]"},
                     "PubIP_name"                    :{"value":"[variables('PublicIPName')]"},
                     "PubIP_sku"                     :{"value":"[variables('PublicIPSKU')]"},
@@ -57,7 +62,9 @@
                     "nw_addressPrefix"              :{"value":"[variables('nw_addressPrefix')]"},
                     "nw_subnetName"                 :{"value":"[variables('nw_subnetName')]"},
                     "nw_subnetAddressPrefix"        :{"value":"[variables('nw_subnetAddressPrefix')]"},
-                    "nw_enableDdosProtection"       :{"value":"[variables('nw_enableDdosProtection')]"}
+                    "nw_enableDdosProtection"       :{"value":"[variables('nw_enableDdosProtection')]"},
+                    "NSG_name"                      :{"value":"[variables('NSG_name')]"}
+
                 }
             }
         }                                        
