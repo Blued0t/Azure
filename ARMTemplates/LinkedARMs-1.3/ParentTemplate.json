@@ -37,6 +37,9 @@
             "name": "VirtualMachine",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",
+            "dependsOn": [
+                "NicTemplate"
+              ],
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
@@ -62,8 +65,8 @@
                     "nw_addressPrefix"              :{"value":"[variables('nw_addressPrefix')]"},
                     "nw_subnetName"                 :{"value":"[variables('nw_subnetName')]"},
                     "nw_subnetAddressPrefix"        :{"value":"[variables('nw_subnetAddressPrefix')]"},
-                    "nw_enableDdosProtection"       :{"value":"[variables('nw_enableDdosProtection')]"},
-                    "NSG_name"                      :{"value":"[variables('NSG_name')]"}
+                    "nw_enableDdosProtection"       :{"value":"[variables('nw_enableDdosProtection')]"}
+
 
                 }
             }
