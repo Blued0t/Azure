@@ -37,10 +37,7 @@
             "name": "VirtualMachine",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",
-            "dependsOn": [
-                "NicTemplate"
-              ],
-            "properties": {
+             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[concat(parameters('artifactsLocation'), 'virtualMachine.json')]",
