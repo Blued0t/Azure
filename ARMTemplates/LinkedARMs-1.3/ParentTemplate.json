@@ -38,7 +38,7 @@
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",
             "dependsOn": [
-                "StorageAccount"
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('stgName'))]"
               ],
             "properties": {
                 "mode": "Incremental",
