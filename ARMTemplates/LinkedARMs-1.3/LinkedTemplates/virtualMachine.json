@@ -166,7 +166,7 @@
         "diagnosticsProfile": {
           "bootDiagnostics": {
             "enabled": true,
-            "storageUri": "[concat(reference(concat('https://', parameters('stgName')), '.blob.core.windows.net'))]"
+            "storageUri": "[reference(concat('https://', parameters('stgName'), '.blob.core.windows.net'))]"
           }
         }
       }
