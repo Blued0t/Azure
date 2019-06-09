@@ -198,22 +198,6 @@
               "nw_enableDdosProtection"       :{"value":"[parameters('nw_enableDdosProtection')]"}
           }
       }
-    },    
-    {
-      "name": "StorageAccount",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2015-01-01",
-      "properties": {
-          "mode": "Incremental",
-          "templateLink": {
-              "uri": "[concat(parameters('artifactsLocation'), 'storageAccount.json')]",
-              "contentVersion": "1.0.0.0"
-          },
-          "parameters": {
-              "location"                 :{"value":"[parameters('location')]"},
-              "stgName"                  :{"value":"[parameters('stgName')]"}
-          }
-      }
     }
   ],
   "outputs": {}
