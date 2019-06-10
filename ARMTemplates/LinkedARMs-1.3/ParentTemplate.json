@@ -70,23 +70,8 @@
 
                 }
             }
-        },
-        {
-            "name": "StorageAccount",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2015-01-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[concat(parameters('artifactsLocation'), 'storageAccount.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "location"                 :{"value":"[variables('location')]"},
-                    "stgName"                  :{"value":"[variables('storageAccountName')]"}
-                }
-            }
-          }                                      
+        }
+                                                
     ],
     "outputs": {}
 }

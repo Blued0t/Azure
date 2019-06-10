@@ -159,18 +159,35 @@
         "networkProfile": {
           "networkInterfaces": [
             {
-              "id": "[resourceId('Microsoft.Network/networkInterfaces','NetworkNIC')]"
+      "name": "NetworkInterface",
+            "id"                      : "[reference('NetworkNIC').outputs.resourceID.value]"
             }
           ]
         },
         "diagnosticsProfile": {
           "bootDiagnostics": {
             "enabled": true,
-            "storageUri": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('stgName')), '2016-01-01').primaryEndpoints.blob]"
+            "storageUri"                : "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('stgName')), '2016-01-01').primaryEndpoints.blob]"
           }
         }
       }
     },
+    {
+      "name": "StorageAccount",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "properties": {
+          "mode": "Incremental",
+          "templateLink": {
+              "uri": "[concat(parameters('artifactsLocation'), 'storageAccount.json')]",
+              "contentVersion": "1.0.0.0"
+          },
+          "parameters": {
+              "location"                 :{"value":"[parameters('location')]"},
+              "stgName"                  :{"value":"[parameters('stgName')]"}
+          }
+      }
+    }, 
     {
       "name": "NetworkInterface",
       "type": "Microsoft.Resources/deployments",
@@ -198,7 +215,8 @@
               "nw_enableDdosProtection"       :{"value":"[parameters('nw_enableDdosProtection')]"}
           }
       }
-    }
+    } 
+
   ],
   "outputs": {}
   
