@@ -160,7 +160,7 @@
           "networkInterfaces": [
             {
       "name": "NetworkInterface",
-            "id"                      : "[reference('NetworkNIC').outputs.resourceID.value]"
+            "id"                      : "[reference('NetworkInterface').outputs.resourceID.value]"
             }
           ]
         },
