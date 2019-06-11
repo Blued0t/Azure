@@ -159,15 +159,15 @@
         "networkProfile": {
           "networkInterfaces": [
             {
-      "name": "NetworkInterface",
-            "id"                      : "[reference('NetworkInterface').outputs.resourceID.value]"
+            "name"                      : "NetworkInterface",
+            "id"                        : "[reference('NetworkInterface').outputs.resourceID.value]"
             }
           ]
         },
         "diagnosticsProfile": {
           "bootDiagnostics": {
             "enabled": true,
-            "storageUri"                : "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('stgName')), '2016-01-01').primaryEndpoints.blob]"
+            "storageUri"                : "[reference('StorageAccount').outputs.resourceUri.value]"
           }
         }
       }

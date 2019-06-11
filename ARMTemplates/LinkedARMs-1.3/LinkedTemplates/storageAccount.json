@@ -32,9 +32,9 @@
       }
     ],
     "outputs": {
-      "resourceID": {
+      "resourceUri": {
           "type": "string",
-          "value": "[resourceId('Microsoft.Storage/storageAccounts', parameters('stgName'))]"
+          "value"   :"[reference(concat('Microsoft.Storage/storageAccounts/', parameters('stgName')), '2016-01-01').primaryEndpoints.blob]"
       }
     }
 }
