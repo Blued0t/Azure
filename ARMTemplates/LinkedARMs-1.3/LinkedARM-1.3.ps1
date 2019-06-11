@@ -1,6 +1,6 @@
 <#
  .SYNOPSIS
-    Deploys a network, NIC, NSG, Public IP address, storage account and a VM
+    Deploys a Network, NIC, Public IP address, storage account and a VM
 
  .DESCRIPTION
     ParentTemplate calls linked templates
@@ -26,14 +26,18 @@
 .NOTES
   Version:        1.3
   Author:         Jon Kidd
-  Creation Date:  31.05.19
+  Creation Date:  11.06.19
   Purpose/Change:
-  Very rough and ready linked template deployment from parentTemplate.json.
-  Needs running a few times to allow for resources to be built.
-  No reference or depends actions 
+  Linked template deployment from parentTemplate.json.
+  Template dependencies use references (so waits until child deployments are complete)
+  Further enhancements to follow in future releases
+    Option to create multiple VM's
+    Option to deploy Dev or Prod
+    Windows PowerShell extensions deployed once VM's are built
+    Custom PowerShell script will run on each VM
   
 .EXAMPLE
-.\LinkedARM-1.3.ps1 -resourceGroupName:"Linked-ARM-1.2" -ame:"LinkedARMDeployment" -Verbose -subscriptionId:############## -resourceGroupLocation:uksouth -templateFilePath: ".\ParentTemplate.json"
+.\LinkedARM-1.3.ps1 -resourceGroupName:"Linked-ARM-1.3" -name:"LinkedARMDeployment" -Verbose -subscriptionId:############## -resourceGroupLocation:uksouth -templateFilePath: ".\ParentTemplate.json"
 
 #>
 
