@@ -1,0 +1,84 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "artifactsLocation"     : {
+            "type"              : "string",
+            "defaultValue"      : "https://raw.githubusercontent.com/Blued0t/Azure/master/ARMTemplates/LinkedARMs-1.3/LinkedTemplates/",
+            "metadata": {
+                "description"   : "Linked template locations"
+            }
+        },
+        "totalVMs"              :{
+            "type"              : "int",
+            "metadata"          : {
+                "description"   :"Total VMs to be built"
+            }
+        }
+
+    },
+    "variables": {
+        "location"                  : "uksouth",
+        "PublicIPName"              : "PubIP",
+        "PublicIPSKU"               : "Basic",
+        "PublicIPAllocation"        : "Dynamic",
+        "PublicIPidleTimeout"       :  15,
+        "PublicIPdomainLabel"       : "blued0t-ip",
+        "PublicIpAddressVersion"    : "IPv4",
+        "nw_identity"               : "InternalNetwork",
+        "nw_addressPrefix"          : "10.1.0.0/24",
+        "nw_subnetName"             : "default",
+        "nw_subnetAddressPrefix"    : "10.1.0.0/24",
+        "nw_enableDdosProtection"   : false,
+        "NSG_name"                  : "NSG", 
+        "storageAccountName"        : "bdarmstorage", 
+        "NIC_Name"                  : "NetworkNIC",
+        "VM_Name"                   : "blued0tVM",
+        "VM_user"                   : "blueadmin",
+        "VM_pw"                     : "blueadm1n!",
+        "VM_OS"                     : "2016-Datacenter"
+    },
+    "resources": [
+        {
+            "name": "VirtualMachine",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2015-01-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('artifactsLocation'), 'virtualMachine.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "copy": {
+                    "name"  : "vmcopy",
+                    "count" : "[parameters('totalVMs')]"
+                },
+                "parameters": {
+                    "artifactsLocation"             :{"value":"[parameters('artifactsLocation')]"},
+                    "location"                      :{"value":"[variables('location')]"},
+                    "VM_name"                       :{"value":"[concat('VM_', copyIndex('vmcopy', 1))]"},
+                    "adminUsername"                 :{"value":"[variables('VM_user')]"},
+                    "adminPassword"                 :{"value":"[variables('VM_pw')]"},
+                    "windowsOSVersion"              :{"value":"[variables('VM_OS')]"},
+                    "stgName"                       :{"value":"[variables('storageAccountName')]"},
+                    "NIC_Name"                      :{"value":"[variables('NIC_Name')]"},
+                    "PubIP_name"                    :{"value":"[variables('PublicIPName')]"},
+                    "PubIP_sku"                     :{"value":"[variables('PublicIPSKU')]"},
+                    "PubIP_publicIPAllocationMethod":{"value":"[variables('PublicIPAllocation')]"},
+                    "PubIP_idleTimeoutInMinutes"    :{"value":"[variables('PublicIPidleTimeout')]"},
+                    "PubIP_domainNameLabel"         :{"value":"[variables('PublicIPdomainLabel')]"},
+                    "PubIP_publicIpAddressVersion"  :{"value":"[variables('PublicIpAddressVersion')]"},
+                    "nw_Identity"                   :{"value":"[variables('nw_Identity')]"},
+                    "nw_addressPrefix"              :{"value":"[variables('nw_addressPrefix')]"},
+                    "nw_subnetName"                 :{"value":"[variables('nw_subnetName')]"},
+                    "nw_subnetAddressPrefix"        :{"value":"[variables('nw_subnetAddressPrefix')]"},
+                    "nw_enableDdosProtection"       :{"value":"[variables('nw_enableDdosProtection')]"}
+
+
+                }
+            }
+        }
+                                                
+    ],
+    "outputs": {}
+}
