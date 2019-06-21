@@ -47,6 +47,7 @@
 
     },
     "variables": {
+        "artifactsLocation"         : "[concat(parameters('artifactsLocation'), '/LinkedARMs-1.4/')]",
         "location"                  : "uksouth",
         "PublicIPName"              : "PubIP",
         "PublicIPSKU"               : "Basic",
@@ -76,7 +77,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "artifactsLocation"             :{"value":"[parameters('artifactsLocation')]"},
+                    "artifactsLocation"             :{"value":"[variables('artifactsLocation')]"},
                     "location"                      :{"value":"[variables('location')]"},
                     "VM_name"                       :{"value":"[parameters('VM_Name')]"},
                     "adminUsername"                 :{"value":"[parameters('VM_user')]"},
