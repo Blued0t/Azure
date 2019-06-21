@@ -9,12 +9,41 @@
                 "description"   : "Linked template locations"
             }
         },
+        "location": {
+            "type"              : "string",
+            "defaultValue"      : "uksouth",
+            "metadata"          : {
+                "description"   :"Location"
+            }
+        },
         "totalVMs"              :{
             "type"              : "int",
             "metadata"          : {
                 "description"   :"Total VMs to be built"
             }
+        },
+        "VM_name"              :{
+            "type"              : "string",
+            "defaultValue"      : "blueadmin",
+            "metadata"          : {
+                "description"   :"Total VMs to be built"
+            }
+        },        
+        "VM_user"              :{
+            "type"              : "string",
+            "defaultValue"      : "blueadmin",
+            "metadata"          : {
+                "description"   :"Total VMs to be built"
+            }
+        },
+        "VM_pw"              :{
+            "type"              : "string",
+            "defaultValue"      : "blueadmin",
+            "metadata"          : {
+                "description"   :"Total VMs to be built"
+            }
         }
+
 
     },
     "variables": {
@@ -33,9 +62,6 @@
         "NSG_name"                  : "NSG", 
         "storageAccountName"        : "bdarmstorage", 
         "NIC_Name"                  : "NetworkNIC",
-        "VM_Name"                   : "blued0tVM",
-        "VM_user"                   : "blueadmin",
-        "VM_pw"                     : "blueadm1n!",
         "VM_OS"                     : "2016-Datacenter"
     },
     "resources": [
@@ -49,16 +75,12 @@
                     "uri": "[concat(parameters('artifactsLocation'), 'virtualMachine.json')]",
                     "contentVersion": "1.0.0.0"
                 },
-                "copy": {
-                    "name"  : "vmcopy",
-                    "count" : "[parameters('totalVMs')]"
-                },
                 "parameters": {
                     "artifactsLocation"             :{"value":"[parameters('artifactsLocation')]"},
                     "location"                      :{"value":"[variables('location')]"},
-                    "VM_name"                       :{"value":"[concat('VM_', copyIndex('vmcopy', 1))]"},
-                    "adminUsername"                 :{"value":"[variables('VM_user')]"},
-                    "adminPassword"                 :{"value":"[variables('VM_pw')]"},
+                    "VM_name"                       :{"value":"[parameters('VM_Name')]"},
+                    "adminUsername"                 :{"value":"[parameters('VM_user')]"},
+                    "adminPassword"                 :{"value":"[parameters('VM_pw')]"},
                     "windowsOSVersion"              :{"value":"[variables('VM_OS')]"},
                     "stgName"                       :{"value":"[variables('storageAccountName')]"},
                     "NIC_Name"                      :{"value":"[variables('NIC_Name')]"},
