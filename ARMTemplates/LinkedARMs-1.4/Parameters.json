@@ -5,6 +5,9 @@
         "artifactsLocation"     :{
             "value": ""
         },
+        "sasToken"              :{
+            "value": ""
+        },
         "location"              :{
             "value": "uksouth"
         },

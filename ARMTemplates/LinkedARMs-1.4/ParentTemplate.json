@@ -9,6 +9,13 @@
                 "description"   : "Linked template locations"
             }
         },
+        "sasToken"     : {
+            "type"              : "string",
+            "defaultValue"      : "default",
+            "metadata": {
+                "description"   : "SAS Token"
+            }
+        },
         "location": {
             "type"              : "string",
             "defaultValue"      : "uksouth",
@@ -72,7 +79,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('artifactsLocation'), 'virtualMachine.json')]",
+                    "uri": "[concat(parameters('artifactsLocation'), 'virtualMachine.json',parameters('sasToken'))]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
