@@ -72,7 +72,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('artifactsLocation'), 'virtualMachine.json')]",
+                    "uri": "[concat(parameters('artifactsLocation'), '/LinkedTemplates/virtualMachine.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
