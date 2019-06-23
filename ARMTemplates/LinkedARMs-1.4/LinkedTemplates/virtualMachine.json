@@ -16,6 +16,12 @@
               "description": "artifacts Locations"
             }
           },
+          "sasToken": {
+            "type": "string",
+            "metadata": {
+              "description": "artifacts Locations"
+            }
+          },          
           "VM_name": {
             "type": "string",
             "metadata": {
@@ -179,7 +185,7 @@
       "properties": {
           "mode": "Incremental",
           "templateLink": {
-              "uri": "[concat(parameters('artifactsLocation'), 'storageAccount.json')]",
+              "uri": "[concat(parameters('artifactsLocation'),'LinkedTemplates/storageAccount.json',parameters('sasToken'))]",
               "contentVersion": "1.0.0.0"
           },
           "parameters": {
@@ -195,11 +201,12 @@
       "properties": {
           "mode": "Incremental",
           "templateLink": {
-              "uri": "[concat(parameters('artifactsLocation'), 'networkInterface.json')]",
+              "uri": "[concat(parameters('artifactsLocation'),'LinkedTemplates/networkInterface.json',parameters('sasToken'))]",
               "contentVersion": "1.0.0.0"
           },
           "parameters": {
               "artifactsLocation"             :{"value":"[parameters('artifactsLocation')]"},
+              "sasToken"                      :{"value":"[parameters('sasToken')]"},
               "location"                      :{"value":"[parameters('location')]"},
               "NIC_Name"                      :{"value":"[parameters('NIC_Name')]"},
               "PubIP_name"                    :{"value":"[parameters('PubIP_name')]"},

@@ -31,21 +31,21 @@
         },
         "VM_name"              :{
             "type"              : "string",
-            "defaultValue"      : "blueadmin",
+            "defaultValue"      : "",
             "metadata"          : {
                 "description"   :"Total VMs to be built"
             }
         },        
         "VM_user"              :{
             "type"              : "string",
-            "defaultValue"      : "blueadmin",
+            "defaultValue"      : "",
             "metadata"          : {
                 "description"   :"Total VMs to be built"
             }
         },
         "VM_pw"              :{
             "type"              : "string",
-            "defaultValue"      : "blueadmin",
+            "defaultValue"      : "",
             "metadata"          : {
                 "description"   :"Total VMs to be built"
             }
@@ -79,7 +79,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('artifactsLocation'),'virtualMachine.json',parameters('sasToken'))]",
+                    "uri": "[concat(parameters('artifactsLocation'),'LinkedTemplates/virtualMachine.json',parameters('sasToken'))]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
