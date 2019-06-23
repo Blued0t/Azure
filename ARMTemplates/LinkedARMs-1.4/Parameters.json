@@ -15,13 +15,13 @@
             "value"             : "1"         
         },
         "VM_name"              :{
-            "value"             : "bluedot_vm"         
+            "value"             : ""         
         },       
         "VM_user"              :{
-            "value"             : "blueadmin"         
+            "value"             : ""         
         },
         "VM_pw"                 :{
-            "value"             : "blu3adm1n"         
+            "value"             : ""         
         }
     }
 }
