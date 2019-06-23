@@ -206,6 +206,7 @@
           },
           "parameters": {
               "artifactsLocation"             :{"value":"[parameters('artifactsLocation')]"},
+              "sasToken"                      :{"value":"[parameters('sasToken')]"},
               "location"                      :{"value":"[parameters('location')]"},
               "NIC_Name"                      :{"value":"[parameters('NIC_Name')]"},
               "PubIP_name"                    :{"value":"[parameters('PubIP_name')]"},
