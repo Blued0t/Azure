@@ -79,11 +79,12 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('artifactsLocation'), 'virtualMachine.json',parameters('sasToken'))]",
+                    "uri": "[concat(parameters('artifactsLocation'),'virtualMachine.json',parameters('sasToken'))]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
                     "artifactsLocation"             :{"value":"[parameters('artifactsLocation')]"},
+                    "sasToken"                      :{"value":"[parameters('sasToken')]"},
                     "location"                      :{"value":"[variables('location')]"},
                     "VM_name"                       :{"value":"[parameters('VM_Name')]"},
                     "adminUsername"                 :{"value":"[parameters('VM_user')]"},
