@@ -16,6 +16,12 @@
             "description": "artifacts Locations"
           }
         },
+        "sasToken": {
+          "type": "string",
+          "metadata": {
+            "description": "SAT Token Locations"
+          }
+        },
         "NIC_Name": {
           "type": "string",
           "metadata": {
@@ -122,7 +128,7 @@
     "properties": {
         "mode": "Incremental",
         "templateLink": {
-            "uri": "[concat(parameters('artifactsLocation'), 'pubIpAddress.json')]",
+            "uri": "[concat(parameters('artifactsLocation'),'LinkedTemplates/pubIpAddress.json',parameters('sasToken'))]",
             "contentVersion": "1.0.0.0"
         },
         "parameters":{
@@ -142,7 +148,7 @@
   "properties": {
       "mode": "Incremental",
       "templateLink": {
-          "uri": "[concat(parameters('artifactsLocation'), 'network.json')]",
+          "uri": "[concat(parameters('artifactsLocation'),'LinkedTemplates/network.json',parameters('sasToken'))]",
           "contentVersion": "1.0.0.0"
       },
       "parameters": {
