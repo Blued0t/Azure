@@ -33,7 +33,7 @@
             "type"              : "string",
             "defaultValue"      : "",
             "metadata"          : {
-                "description"   :"Total VMs to be built"
+                "description"   :"Name of VM being deployed"
             }
         },        
         "VM_user"              :{
