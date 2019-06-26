@@ -47,7 +47,7 @@
             "type"              : "string",
             "defaultValue"      : "",
             "metadata"          : {
-                "description"   :"Total VMs to be built"
+                "description"   :"VM admin pw"
             }
         }
 
