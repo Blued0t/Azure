@@ -37,7 +37,7 @@
           "adminPassword": {
             "type": "string",
             "metadata": {
-              "description": "Admin Password"
+              "description": "Secret Admin Password"
             }
           },
           "windowsOSVersion": {
