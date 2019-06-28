@@ -13,6 +13,7 @@ steps:
    # Write your powershell commands here.
    
    Write-Host "Hello World"
+   Write-Host "From yaml.... :) "
    
    
    # Use the environment variables input below to pass secret variables to this script.
