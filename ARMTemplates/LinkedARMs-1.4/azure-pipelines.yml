@@ -14,6 +14,7 @@ steps:
    
    Write-Host "Hello World"
    Write-Host "From yaml.... :) "
+   Write-Host "From Rel II....."
    
    
    # Use the environment variables input below to pass secret variables to this script.
