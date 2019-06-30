@@ -4,6 +4,12 @@ trigger:
 pool:
   name: Hosted VS2017
 steps:
+- task: Purge resources in resource group@1
+  inputs:
+    ConnectedServiceNameSelector: 'ConnectedServiceNameARM'
+    ConnectedServiceNameARM: 'Microsoft Partner Network (4453e6df-6c31-4f35-b249-0316c780cba4)'
+    resourceGroupName: 'PRD-Azure-IaaS-1.4'
+
 - task: CopyFiles@1
   displayName: 'Copy ParentTemplate.json to Staging....'
   inputs:
