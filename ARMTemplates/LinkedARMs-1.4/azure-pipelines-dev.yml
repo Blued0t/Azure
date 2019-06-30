@@ -17,7 +17,8 @@ steps:
    
    Write-Host "Hello World"
    Write-Host "From Dev Build Pipeline yaml.... :) "
-   Write-Host "Rel 1.0 :) "
+   Write-Host "Rel 1.01 :) "
+   
    
    # Use the environment variables input below to pass secret variables to this script.
   displayName: 'PowerShell Script'
