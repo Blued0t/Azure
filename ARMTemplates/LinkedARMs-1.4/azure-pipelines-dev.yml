@@ -1,5 +1,5 @@
 trigger:
-- dev
+- Dev
 
 pool:
   name: Hosted VS2017
