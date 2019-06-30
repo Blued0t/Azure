@@ -1,0 +1,29 @@
+trigger:
+- dev
+
+pool:
+  name: Hosted VS2017
+steps:
+- task: CopyFiles@2
+  displayName: 'Copy ParentTemplate.json to Staging....'
+  inputs:
+    SourceFolder: 'ARMTemplates/LinkedARMs-1.4'
+    Contents: '**/*.json'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: true
+
+- powershell: |
+   # Write your powershell commands here.
+   
+   Write-Host "Hello World"
+   Write-Host "From yaml.... :) "
+   Write-Host "From Rel III....."
+   
+   
+   # Use the environment variables input below to pass secret variables to this script.
+  displayName: 'PowerShell Script'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: ARMdrop'
+  inputs:
+    ArtifactName: ARMdrop
