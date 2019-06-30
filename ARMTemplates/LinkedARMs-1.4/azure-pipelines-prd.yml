@@ -23,7 +23,7 @@ steps:
    
    Write-Host "Hello World"
    Write-Host "From Prd Build Pipeline yaml.... :) "
-   Write-host "From Rel 1.0"
+   Write-host "From Rel 1.01"
    
    
    # Use the environment variables input below to pass secret variables to this script.
