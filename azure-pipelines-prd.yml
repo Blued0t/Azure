@@ -6,6 +6,7 @@
 trigger:
 - master
 
+<<<<<<< HEAD
 stages:
 - stage: Build_DevWeb
   displayName: Building DevWeb Stage
@@ -27,3 +28,16 @@ stages:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'DevWebdrop'
         publishLocation: 'Container'
+=======
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+>>>>>>> 3844866f7ab9c592df662773750dd34e0853bccd
