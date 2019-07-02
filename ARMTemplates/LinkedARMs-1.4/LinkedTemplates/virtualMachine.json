@@ -19,7 +19,7 @@
           "sasToken": {
             "type": "string",
             "metadata": {
-              "description": "artifacts Locations"
+              "description": "SAS Token"
             }
           },          
           "VM_name": {
