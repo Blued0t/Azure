@@ -8,7 +8,7 @@ steps:
   inputs:
     ConnectedServiceNameSelector: 'ConnectedServiceNameARM'
     ConnectedServiceNameARM: 'Microsoft Partner Network (4453e6df-6c31-4f35-b249-0316c780cba4)'
-    resourceGroupName: 'PRD-Azure-IaaS-1.4'
+    resourceGroupName: 'DEV-Azure-IaaS-1.4'
 
 - task: CopyFiles@1
   displayName: 'Copy ParentTemplate.json to Staging....'
@@ -22,7 +22,7 @@ steps:
    # Write your powershell commands here.
    
    Write-Host "Hello World"
-   Write-Host "From Prd Build Pipeline yaml.... :) "
+   Write-Host "From Dev Build Pipeline yaml.... :) "
    Write-host "From Rel 1.01"
    
    
@@ -30,6 +30,6 @@ steps:
   displayName: 'PowerShell Script'
 
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: ARMdropPrd'
+  displayName: 'Publish Artifact: ARMdropDev'
   inputs:
-    ArtifactName: ARMdropPrd
+    ArtifactName: ARMdropDev
