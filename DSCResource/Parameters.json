@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "artifactsLocation"     :{
+            "value": ""
+        },
+        "sasToken"              :{
+            "value": ""
+        },
+        "location"              :{
+            "value": "uksouth"
+        },
+        "totalVMs"              :{
+            "value"             : "1"         
+        },
+        "VM_name"              :{
+            "value"             : ""         
+        },       
+        "VM_user"              :{
+            "value"             : ""         
+        },
+        "VM_pw"                 :{
+            "value"             : ""         
+        }
+    }
+}
