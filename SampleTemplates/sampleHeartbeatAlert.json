@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "dataSourceName": {
-            "defaultValue": "/subscriptions/4453e6df-6c31-4f35-b249-0316c780cba4/resourceGroups/AzureDevops-DSC-Deployment/providers/Microsoft.OperationalInsights/workspaces/UnivexWorkspace",
+            "defaultValue": "subscriptions/4453e6df-6c31-4f35-b249-0316c780cba4/resourceGroups/Dev-Logging/providers/Microsoft.OperationalInsights/workspaces/DevUni-LA",
             "type": "string",
             "minLength": 1,
             "metadata": {
@@ -21,8 +21,8 @@
         "name":"Heartbeat Test",
         "location":"UK South",
         "properties":{
-            "description": "blah",
-            "displayName": "blah",
+            "description": "Simple Heartbeat alert",
+            "displayName": "Win10-Heartbeat",
             "enabled":"true",
             "source":{
                 "query": "[concat('Heartbeat | Where Computer Contains ', variables('vmNames'))]",
@@ -38,7 +38,7 @@
                 "severity":"4",
                 "aznsAction":{
                     "actionGroup":
-                        ["/subscriptions/4453e6df-6c31-4f35-b249-0316c780cba4/resourcegroups/azuredevops-dsc-deployment/providers/microsoft.insights/actiongroups/webhook"],
+                        ["/subscriptions/4453e6df-6c31-4f35-b249-0316c780cba4/resourcegroups/dev-logging/providers/microsoft.insights/actiongroups/UniDev-ActionGroup"],
                     "emailSubject":"blah"
                 },
                 "trigger":{
